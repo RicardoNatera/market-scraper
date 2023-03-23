@@ -1,0 +1,3 @@
+node_modules
+./scraper-project/node_modules
+./scraper-server/node_modules

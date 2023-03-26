@@ -1,24 +1,29 @@
-import { useState,useEffect } from 'react'
+import { useState,useEffect,useRef } from 'react'
 import axios from 'axios';
 
 import Form from './components/Form'
 import ProductList from './components/ProductList'
 
 function App() {
+  const loading = useRef();
   const [data,setData] = useState(null)
   const [show,setShow] = useState(false)
   const [products,setProducts] = useState([])
-  const [loading,setLoading] = useState(false)
 
   useEffect(() => {
     async function fetchData(data){
-      
+      const divElement = loading.current;
+      console.log(divElement.innerText);
+      loading.current.innerText="Loading"
       const result = await axios.post("http://localhost:3000/", data);
       if(result.data){
         const response = result.data.array
         setProducts(response);
       }
+      loading.current.innerText="Search"
+      
     }
+
     
     if(data){
       fetchData(data)
@@ -27,7 +32,7 @@ function App() {
   
   return (
     <>
-      <Form setData={setData} setShow={setShow}/>
+      <Form setData={setData} setShow={setShow} reference={loading}/>
       {show ? (<ProductList products={products}/>):(<></>)}
     </>
   )

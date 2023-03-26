@@ -1,10 +1,10 @@
 
-function Product({nombre,precio,link,imgLink}) {
+function Product({nombre,precio,link,img}) {
 
     return (
     <div>
         <div style={{float: "left", width: "30%"}}>
-            <img src={imgLink} style={{objectFit:"contain"}} alt={nombre}  />
+            <img src={img} style={{objectFit:"contain"}} alt={nombre}  />
         </div>
         <div style={{float: "left", width: "40%"}}>
             <h2>{nombre}</h2>

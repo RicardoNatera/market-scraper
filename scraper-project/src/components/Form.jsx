@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-function Form({setData, setShow}) {
+function Form({setData, setShow, reference}) {
   const [formData,setFormData] = useState({Web:"Todas",Categorias:"Mobile",search:""})
   
   const onChange = (e)=>{
@@ -34,7 +34,7 @@ function Form({setData, setShow}) {
                 <option value="TV">TV</option>
             </select>
             <input type="search" id="search" name="search" placeholder="Search" value={search} onChange={onChange}/>
-            <button onClick={handleClick}>Search</button>
+            <button ref={reference} onClick={handleClick}>Search</button>
           </div>
     </form>
     </div>

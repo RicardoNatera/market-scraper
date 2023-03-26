@@ -65,7 +65,11 @@ app.post('/',async (req, res) => {
     TV:3
   }
   let response=[]
-  if(req.body.Web=="Todas" || req.body.Web=="MercadoLibre"){
+  if(req.body.Web=="Todas"){
+    let livreResponse = await scraperController(browserInstance,mercadolivre[(req.body.search!=='') ? (req.body.Categorias+"Search"):req.body.Categorias],(req.body.search=='') ? false:true,"livre",cat[req.body.Categorias]) 
+    let buscapeResponse = await scraperController(browserInstance,buscape[(req.body.search!=='') ? (req.body.Categorias+"Search"):req.body.Categorias],(req.body.search=='') ? false:true,"buscape",cat[req.body.Categorias])
+    response = livreResponse.concat(buscapeResponse)
+  }else if(req.body.Web=="MercadoLibre"){
     response = await scraperController(browserInstance,mercadolivre[(req.body.search!=='') ? (req.body.Categorias+"Search"):req.body.Categorias],(req.body.search=='') ? false:true,"livre",cat[req.body.Categorias])
   }else{
     response = await scraperController(browserInstance,buscape[(req.body.search!=='') ? (req.body.Categorias+"Search"):req.body.Categorias],(req.body.search=='') ? false:true,"buscape",cat[req.body.Categorias])

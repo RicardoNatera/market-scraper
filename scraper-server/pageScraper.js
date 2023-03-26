@@ -37,8 +37,6 @@ const scraperLivre= async(page,cat)=>{
 			precio:e.querySelector('.ui-recommendations-card__content-and-hidden .ui-recommendations-card__content .ui-recommendations-card__price-block .ui-recommendations-card__price-top .ui-recommendations-card__price-and-discount span .andes-money-amount__fraction').innerText
 		}}))
 
-		console.log(tv)
-
 		return tv;
 	}else if(cat==2){
 		await page.waitForSelector('#root-app > div > div.ui-search-main.ui-search-main--exhibitor.ui-search-main--only-products.ui-search-main--with-topkeywords.shops__search-main > section > ol');
@@ -51,8 +49,6 @@ const scraperLivre= async(page,cat)=>{
 			img: e.querySelector('.ui-search-layout__item div div div.ui-search-result__image.shops__picturesStyles a div div div div div img').src,
 			precio:e.querySelector('.ui-search-layout__item div div div.ui-search-result__content-wrapper div.ui-search-result__content-columns.shops__content-columns div div div div div span span').innerText
 		}}))
-
-		console.log(refri)
 
 		return refri;
 
@@ -67,7 +63,6 @@ const scraperLivre= async(page,cat)=>{
 			img: e.querySelector('.dynamic-carousel__item-container a div img').src,
 			precio:e.querySelector('.dynamic-carousel__item-container a div div .dynamic-carousel__price-block .dynamic-carousel__price').innerText
 		}}))
-		console.log(mobile)
 
 		return mobile;
 		
@@ -78,7 +73,6 @@ const scraperLivre= async(page,cat)=>{
 const scraperLivreSearch= async(page,cat)=>{
 	
 	if(cat==3){
-		console.log("tv")
 		await page.waitForSelector('#root-app > div > div.ui-search-main');
 		await wait(page)
 		let data = await page.$$eval('.ui-search-layout__item',(elements)=>elements.map((e)=>{
@@ -93,7 +87,6 @@ const scraperLivreSearch= async(page,cat)=>{
 		return data;
 		
 	}else{
-		console.log("entre")
 		await page.waitForSelector('#root-app > div > div.ui-search-main');
 		await wait(page)
 		let data = await page.$$eval('.ui-search-layout__item.shops__layout-item',(elements)=>elements.map((e)=>{
@@ -120,7 +113,6 @@ const scraperObject = {
 		}else if(store=="buscape"){
 			data = await scraperBuscape(page)
 		}
-		console.log(data)
 		return data
 	}
 }
